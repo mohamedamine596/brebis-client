@@ -17,17 +17,24 @@ const Login: React.FC = () => {
 
         try {
             const response = await login(email, password);
-            localStorage.setItem('token', response.token);
-            localStorage.setItem('user', JSON.stringify(response.user));
+            const { data } = response;
             
-            // Redirect based on role
-            if (response.user.role === 'admin') {
-                navigate('/admin/dashboard');
+            if (data && data.token && data.user) {
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('brebis_user', JSON.stringify(data.user));
+                
+                // Redirect based on role
+                if (data.user.role === 'admin') {
+                    navigate('/admin/dashboard');
+                } else {
+                    navigate('/sheep');
+                }
             } else {
-                navigate('/sheep');
+                setError('Réponse invalide du serveur');
             }
         } catch (err: any) {
-            setError(err.response?.data?.message || 'Email ou mot de passe incorrect');
+            console.error('Login error:', err);
+            setError(err.message || 'Email ou mot de passe incorrect');
         } finally {
             setLoading(false);
         }

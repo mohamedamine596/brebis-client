@@ -148,6 +148,34 @@
     text-decoration: underline;
 }
 
+/* Mock Admin Button */
+.mock-admin-section {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.btn-admin-mock {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #ffd700 0%, #fff176 100%);
+    color: #1a4d2e;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.btn-admin-mock:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+    background: linear-gradient(135deg, #fff176 0%, #ffeb3b 100%);
+}
+
 /* Responsive Design */
 @media (max-width: 640px) {
     .auth-card {

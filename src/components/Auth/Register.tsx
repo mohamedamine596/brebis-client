@@ -31,11 +31,12 @@ const Register: React.FC = () => {
 
         try {
             const response = await register(name, email, password);
-            localStorage.setItem('token', response.token);
+            // ensure a string is stored (response.token can be undefined)
+            localStorage.setItem('token', response.token ?? '');
             localStorage.setItem('user', JSON.stringify(response.user));
             navigate('/sheep');
         } catch (err: any) {
-            setError(err.response?.data?.message || 'Erreur lors de la création du compte');
+            setError(err.response?.data?.message || 'Erreur lors de l\'inscription');
         } finally {
             setLoading(false);
         }
